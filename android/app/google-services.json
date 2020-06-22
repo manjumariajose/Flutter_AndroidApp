@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "331775154412",
+    "firebase_url": "https://achieve-it-497be.firebaseio.com",
+    "project_id": "achieve-it-497be",
+    "storage_bucket": "achieve-it-497be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331775154412:android:f174e3d5d1ee90b8e4edc9",
+        "android_client_info": {
+          "package_name": "co.manjumariajose.achieveit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331775154412-auu5vbakniocuj4jr5bcri3l0lo7bloe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzVxtLBodTWRMujJ90lJiuYcU_9D1Myvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331775154412-auu5vbakniocuj4jr5bcri3l0lo7bloe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
