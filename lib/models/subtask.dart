@@ -1,12 +1,10 @@
 class SubTaskData {
-  SubTaskData(this.percentageCompletion, this.goalName);
-  String goalName;
+  SubTaskData(this.percentageCompletion, this.taskName);
+  String taskName;
   int percentageCompletion;
 
-  get model1 => null;
-
   String getGoalName() {
-    return goalName;
+    return taskName;
   }
 
   int getPercentageCompletion() {
@@ -20,4 +18,7 @@ class SubTaskData {
   int getStatus() {
     return percentageCompletion;
   }
+
+  Map toJson() =>
+      {'goalName': taskName, 'percentageCompletion': percentageCompletion};
 }

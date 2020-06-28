@@ -1,24 +1,27 @@
+import 'dart:convert';
+
+import 'package:achieveit/models/goals.dart';
 import 'package:achieveit/screens/addSubTask_screen.dart';
-import 'package:achieveit/screens/subtask_data.dart';
+import 'package:achieveit/models/subtask.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:achieveit/constants.dart';
 import 'package:intl/intl.dart';
 
 final _fireStore = Firestore.instance;
+final databaseReference = FirebaseDatabase.instance.reference();
 
 // ignore: must_be_immutable
 class CreateGoalScreen extends StatefulWidget {
-  List<SubTaskData> subtasks = List<SubTaskData>();
-
-  static String id = 'createGoal_screen';
-  CreateGoalScreen({@required this.status, @required this.taskName});
-  final int status;
-  final String taskName;
+  List<SubTaskData> subTasks = List<SubTaskData>();
+  Goal goal;
+//  static String id = 'createGoal_screen';
 
   @override
   _CreateGoalScreenState createState() => _CreateGoalScreenState();
+  CreateGoalScreen(this.goal);
 }
 
 class _CreateGoalScreenState extends State<CreateGoalScreen> {
@@ -43,7 +46,8 @@ class _CreateGoalScreenState extends State<CreateGoalScreen> {
               ),
               TextField(
                 onChanged: (value) {
-                  var taskName = value;
+                  //var taskName = value;
+                  widget.goal.goalName = value;
                 },
                 decoration: kTextFieldDecoration.copyWith(
                     hintText: 'Enter your goal here...'),
@@ -57,8 +61,8 @@ class _CreateGoalScreenState extends State<CreateGoalScreen> {
                         'Sub-Tasks',
                         style: kTextStyle,
                       ),
-                      if (widget.subtasks.length > 0)
-                        getTextWidgets(widget.subtasks)
+                      if (widget.goal.subTasks.length > 0)
+                        getTextWidgets(widget.goal.subTasks)
                     ],
                   ),
                   Spacer(flex: 4),
@@ -69,7 +73,7 @@ class _CreateGoalScreenState extends State<CreateGoalScreen> {
                     ),
                     onPressed: () {
                       SubTaskData model1 = SubTaskData(0, "");
-                      widget.subtasks.add(model1);
+                      widget.goal.subTasks.add(model1);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -96,7 +100,8 @@ class _CreateGoalScreenState extends State<CreateGoalScreen> {
                           lastDate: DateTime(2022, 12, 31),
                         ).then((date) {
                           setState(() {
-                            _dateTime = date;
+                            widget.goal.dueDate =
+                                date != null ? format.format(date) : '';
                           });
                         });
                       }),
@@ -104,6 +109,23 @@ class _CreateGoalScreenState extends State<CreateGoalScreen> {
               ),
               Text(_dateTime != null ? format.format(_dateTime) : ''),
               kDivider,
+              Center(
+                child: FlatButton(
+                  child: Text(
+                    'Save',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPressed: () {
+                    databaseReference
+                        .child('goals')
+                        .set(jsonEncode(widget.goal));
+                    Navigator.pop(context);
+                  },
+                  color: Colors.lightBlueAccent,
+                ),
+              )
             ],
           ),
         ),

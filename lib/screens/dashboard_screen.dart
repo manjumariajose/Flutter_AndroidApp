@@ -1,10 +1,12 @@
+import 'package:achieveit/models/goals.dart';
+import 'package:achieveit/models/subtask.dart';
 import 'package:achieveit/screens/activeGoal_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:achieveit/components/text_widget.dart';
-import 'createGoal_screen.dart';
-import 'achievedGoal_screen.dart';
-import 'achievedGoal_screen.dart';
+import 'package:achieveit/screens/createGoal_screen.dart';
+import 'package:achieveit/screens/achievedGoal_screen.dart';
+import 'package:intl/intl.dart';
 
 class DashboardScreen extends StatefulWidget {
   static const String id = 'dashboard_screen';
@@ -45,7 +47,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
             TextWidget(
               text: 'Create a Goal',
               onPress: () {
-                Navigator.pushNamed(context, CreateGoalScreen.id);
+                List<SubTaskData> subTasks = List<SubTaskData>();
+                Goal goal = Goal('', '', subTasks);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CreateGoalScreen(goal)));
               },
             ),
             SizedBox(

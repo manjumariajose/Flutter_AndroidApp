@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:achieveit/constants.dart';
-import 'package:achieveit/screens/subtask_data.dart';
+import 'package:achieveit/models/subtask.dart';
 
 final _fireStore = Firestore.instance;
 FirebaseUser loggedInUser;
@@ -56,7 +56,7 @@ class _AddSubTaskScreenState extends State<AddSubTaskScreen> {
                     decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Let\'s give a name'),
                     onChanged: (text) {
-                      widget.model1.goalName = text;
+                      widget.model1.taskName = text;
                     },
                   ),
                   kDivider,

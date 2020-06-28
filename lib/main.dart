@@ -18,7 +18,7 @@ class AchieveIt extends StatelessWidget {
       LoginScreen.id: (context) => LoginScreen(),
       RegistrationScreen.id: (context) => RegistrationScreen(),
       DashboardScreen.id: (context) => DashboardScreen(),
-      CreateGoalScreen.id: (context) => CreateGoalScreen(),
+      //     CreateGoalScreen.id: (context) => CreateGoalScreen(),
       AchievedGoalScreen.id: (context) => AchievedGoalScreen(),
       ActiveGoalScreen.id: (context) => ActiveGoalScreen(),
       //AddSubTaskScreen.id: (context) => AddSubTaskScreen(),
